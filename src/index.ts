@@ -13,7 +13,7 @@ async function handleRequest(request: Request) {
 
   server.accept();
   server.addEventListener('message', (event) => {
-    console.log(event);
+    server.send(event.data);
   });
 
   return new Response(null, {
