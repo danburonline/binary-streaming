@@ -1,4 +1,13 @@
-import { add, MathType, Matrix, multiply, range, sin, zeros } from 'mathjs';
+import {
+  add,
+  map,
+  MathType,
+  Matrix,
+  multiply,
+  range,
+  sin,
+  zeros,
+} from 'mathjs';
 
 export default function generateEEGSignal(
   amplitudes: number[],
@@ -21,11 +30,8 @@ export default function generateEEGSignal(
         signal,
         multiply(
           amplitudes[i],
-          sin(
-            multiply(
-              2 * Math.PI * frequencies[i] * noiseAmplitude,
-              x
-            ) as unknown as number
+          map(x, (val: number) =>
+            sin(multiply(2 * Math.PI * frequencies[i], val))
           )
         )
       );
